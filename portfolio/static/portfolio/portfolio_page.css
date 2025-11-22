@@ -1,0 +1,377 @@
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+    
+    body {
+        background-color: #f8fafc;
+        color: #334155;
+        line-height: 1.6;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    .max-w-5xl {
+        max-width: 1024px;
+        margin: 0 auto;
+    }
+    
+    .max-w-7xl {
+        max-width: 1280px;
+        margin: 0 auto;
+    }
+    
+    /* Hero Section */
+    .hero {
+        position: relative;
+        padding: 80px 0;
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        color: white;
+        overflow: hidden;
+    }
+    
+    .hero-background {
+        position: absolute;
+        inset: 0;
+        opacity: 0.1;
+    }
+    
+    .hero-background::after {
+        content: '';
+        position: absolute;
+        top: 40px;
+        right: 80px;
+        width: 384px;
+        height: 384px;
+        background: #d97706;
+        border-radius: 50%;
+        filter: blur(48px);
+    }
+    
+    .hero-content {
+        position: relative;
+        text-align: center;
+    }
+    
+    .hero h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 24px;
+    }
+    
+    @media (min-width: 768px) {
+        .hero h1 {
+            font-size: 3.75rem;
+        }
+    }
+    
+    .hero p {
+        font-size: 1.25rem;
+        color: #dbeafe;
+        max-width: 768px;
+        margin: 0 auto;
+    }
+    
+    @media (min-width: 768px) {
+        .hero p {
+            font-size: 1.5rem;
+        }
+    }
+    
+    /* Filters Section */
+    .filters-section {
+        padding: 48px 0;
+        background: white;
+        border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .filters-container {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .tabs-container {
+        background: #f3f4f6;
+        border-radius: 8px;
+        padding: 4px;
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    
+    .tab {
+        padding: 8px 16px;
+        border: none;
+        background: transparent;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-transform: capitalize;
+    }
+    
+    .tab.active {
+        background: white;
+        color: #1e3a8a;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .tab:not(.active):hover {
+        color: #374151;
+    }
+    
+    /* Portfolio Grid */
+    .portfolio-section {
+        padding: 64px 0;
+        background: linear-gradient(135deg, #f9fafb 0%, #fed7aa 100%);
+    }
+    
+    .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 32px;
+    }
+    
+    @media (min-width: 768px) {
+        .portfolio-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @media (min-width: 1024px) {
+        .portfolio-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+    
+    /* Portfolio Card */
+    .portfolio-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .portfolio-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    
+    .portfolio-image-container {
+        position: relative;
+        height: 192px;
+        overflow: hidden;
+    }
+    
+    .portfolio-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .portfolio-card:hover .portfolio-image {
+        transform: scale(1.1);
+    }
+    
+    .portfolio-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+    }
+    
+    .portfolio-badge {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+    
+    .badge-project { background: rgb(243, 232, 255); color: rgb(107, 33, 168); }
+    .badge-skill { background: rgb(239, 246, 255); color: rgb(30, 64, 175); }
+    .badge-experience { background: rgb(255, 247, 237); color: rgb(194, 65, 12); }
+    .badge-achievement { background: rgb(254, 242, 242); color: rgb(185, 28, 28); }
+    
+    .portfolio-content {
+        padding: 24px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .portfolio-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 12px;
+        transition: color 0.3s ease;
+    }
+    
+    .portfolio-card:hover .portfolio-title {
+        color: #3b82f6;
+    }
+    
+    .portfolio-description {
+        color: #6b7280;
+        margin-bottom: 16px;
+        flex: 1;
+    }
+    
+    .portfolio-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .portfolio-date {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.875rem;
+        color: #6b7280;
+    }
+    
+    .portfolio-link {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: #3b82f6;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-decoration: none;
+    }
+    
+    .portfolio-link:hover {
+        color: #2563eb;
+    }
+    
+    .link-icon {
+        width: 16px;
+        height: 16px;
+    }
+    
+    /* Skeleton Loading */
+    .skeleton-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 32px;
+    }
+    
+    @media (min-width: 768px) {
+        .skeleton-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @media (min-width: 1024px) {
+        .skeleton-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+    
+    .skeleton-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    
+    .skeleton-image {
+        height: 192px;
+        width: 100%;
+        background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+        background-size: 200% 100%;
+        animation: loading 1.5s infinite;
+    }
+    
+    .skeleton-content {
+        padding: 24px;
+    }
+    
+    .skeleton-badge {
+        height: 24px;
+        width: 80px;
+        background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+        background-size: 200% 100%;
+        animation: loading 1.5s infinite;
+        border-radius: 9999px;
+        margin-bottom: 12px;
+    }
+    
+    .skeleton-title {
+        height: 32px;
+        width: 100%;
+        background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+        background-size: 200% 100%;
+        animation: loading 1.5s infinite;
+        border-radius: 4px;
+        margin-bottom: 8px;
+    }
+    
+    .skeleton-description {
+        height: 80px;
+        width: 100%;
+        background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+        background-size: 200% 100%;
+        animation: loading 1.5s infinite;
+        border-radius: 4px;
+    }
+    
+    @keyframes loading {
+        0% {
+            background-position: 200% 0;
+        }
+        100% {
+            background-position: -200% 0;
+        }
+    }
+    
+    /* Empty State */
+    .empty-state {
+        text-align: center;
+        padding: 80px 0;
+    }
+    
+    .empty-state p {
+        font-size: 1.25rem;
+        color: #6b7280;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.125rem;
+        }
+        
+        .tabs-container {
+            justify-content: flex-start;
+            overflow-x: auto;
+            width: 100%;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .hero h1 {
+            font-size: 2rem;
+        }
+    }

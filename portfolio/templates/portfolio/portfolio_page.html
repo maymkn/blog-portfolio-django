@@ -1,0 +1,173 @@
+    {% extends 'core/base.html' %}
+
+    {% load static %}
+
+    {% block extra_headers %}
+        <title>Portfolio - Mayen</title>
+        <link rel="stylesheet"  type="text/css" href="{% static 'portfolio/portfolio_page.css' %}">
+    {% endblock extra_headers %}
+       
+
+    {% block content %}
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="max-w-5xl container">
+            <div class="hero-content">
+                <h1>Portfolio</h1>
+                <p>The info here is hardcoded with dead links. Will swap it out with real data from backend tomorrow</p>
+                <p>Just meant for figuring out the layout. Regards, Mayen</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+        <div class="max-w-7xl container">
+            <div class="filters-container">
+                <div class="tabs-container" id="categoryTabs">
+                    {% for value, label in categories %}
+                    <button class="tab {% if forloop.first %}active{% endif %}" data-category="{{ value }}">
+                        {{ label }}
+                    </button>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid -->
+    <section class="portfolio-section">
+        <div class="max-w-7xl container">
+            <!-- Loading State -->
+            <div class="skeleton-grid" id="loadingState">
+                <div class="skeleton-card">
+                    <div class="skeleton-image"></div>
+                    <div class="skeleton-content">
+                        <div class="skeleton-badge"></div>
+                        <div class="skeleton-title"></div>
+                        <div class="skeleton-description"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card">
+                    <div class="skeleton-image"></div>
+                    <div class="skeleton-content">
+                        <div class="skeleton-badge"></div>
+                        <div class="skeleton-title"></div>
+                        <div class="skeleton-description"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card">
+                    <div class="skeleton-image"></div>
+                    <div class="skeleton-content">
+                        <div class="skeleton-badge"></div>
+                        <div class="skeleton-title"></div>
+                        <div class="skeleton-description"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card">
+                    <div class="skeleton-image"></div>
+                    <div class="skeleton-content">
+                        <div class="skeleton-badge"></div>
+                        <div class="skeleton-title"></div>
+                        <div class="skeleton-description"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card">
+                    <div class="skeleton-image"></div>
+                    <div class="skeleton-content">
+                        <div class="skeleton-badge"></div>
+                        <div class="skeleton-title"></div>
+                        <div class="skeleton-description"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card">
+                    <div class="skeleton-image"></div>
+                    <div class="skeleton-content">
+                        <div class="skeleton-badge"></div>
+                        <div class="skeleton-title"></div>
+                        <div class="skeleton-description"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portfolio Items Grid -->
+            <div class="portfolio-grid" id="portfolioGrid" style="display: none;">
+                {% for item in portfolio_items %}
+                    {% include "portfolio/portfolio_card.html" with item=item %}
+                {% endfor %}
+
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <p>No items found in this category.</p>
+            </div>
+        </div>
+    </section>
+ 
+    {% endblock content %}
+    
+    {% block extra_scripts %} 
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryTabs = document.getElementById('categoryTabs');
+            const portfolioGrid = document.getElementById('portfolioGrid');
+            const loadingState = document.getElementById('loadingState');
+            const emptyState = document.getElementById('emptyState');
+            const portfolioCards = document.querySelectorAll('.portfolio-card');
+            const tabs = document.querySelectorAll('.tab');
+            
+            let activeCategory = 'all';
+            
+            // Simulate loading state
+            setTimeout(() => {
+                loadingState.style.display = 'none';
+                portfolioGrid.style.display = 'grid';
+            }, 1500);
+            
+            // Category tab functionality
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    // Update active category
+                    activeCategory = this.getAttribute('data-category');
+                    // Filter items
+                    filterItems();
+                });
+            });
+            
+            // Filter items based on category
+            function filterItems() {
+                let visibleCount = 0;
+                
+                portfolioCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    
+                    const matchesCategory = activeCategory === 'all' || category === activeCategory;
+                    
+                    if (matchesCategory) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Show empty state if no items match
+                if (visibleCount === 0) {
+                    emptyState.style.display = 'block';
+                    portfolioGrid.style.display = 'none';
+                } else {
+                    emptyState.style.display = 'none';
+                    portfolioGrid.style.display = 'grid';
+                }
+            }
+        });
+    </script>
+
+    {% endblock extra_scripts %}

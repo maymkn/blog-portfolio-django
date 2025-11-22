@@ -1,0 +1,47 @@
+<!-- portfolio_card.html -->
+
+<div class="portfolio-card" data-category="{{ item.category }}">
+    <div class="portfolio-image-container">
+        {% if item.image %}
+        <img src="{{ item.image.url }}" alt="{{ item.title }}" class="portfolio-image">
+        {% else %}
+        <img src="" 
+             alt="{{ item.title }}" class="portfolio-image">
+        {% endif %}
+        <div class="portfolio-overlay"></div>
+        <span class="portfolio-badge badge-{{ item.category|lower }}">{{ item.get_category_display }}</span>
+    </div>
+    <div class="portfolio-content">
+        <h3 class="portfolio-title">{{ item.title }}</h3>
+        
+        {% if item.description %}
+        <p class="portfolio-description">{{ item.description|truncatewords:20 }}</p>
+        {% endif %}
+        
+        <div class="portfolio-footer">
+            <div class="portfolio-date">
+
+                    {% if item.start_date %}
+                    <svg class="link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                        {{ item.start_date|date:"M Y" }}
+                        {% if item.end_date %} - {{ item.end_date|date:"M Y" }}
+                        {% elif item.date_achieved %} - {{ item.date_achieved|date:"M Y" }}
+                        {% else %} - Present
+                        {% endif %}
+                    {% elif item.date_achieved %}
+                        {{ item.date_achieved|date:"M Y" }}
+                    {% endif %}
+                </span>
+            </div>
+            <a href="{% url 'portfolio_item_detail' item.pk %}" class="portfolio-link">
+                View
+                <svg class="link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+            </a>
+        </div>
+
+    </div>
+</div>

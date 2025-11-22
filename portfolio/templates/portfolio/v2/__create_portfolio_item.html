@@ -1,0 +1,33 @@
+    {% extends 'core/base.html' %}
+
+    {% load static %}
+        
+    {% block extra_headers %}
+        <title>Portfolio - Add {{ category }}</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'portfolio/create_portfolio_item.css' %}">
+    {% endblock extra_headers %}
+       
+    {% block content %}
+
+    <div class="form-container">
+        <h2>Create {{ category_verbose }}</h2>
+
+        <!-- Django messages -->
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% load crispy_forms_tags %}
+        <form method="POST" enctype="multipart/form-data" action="{% url 'create_portfolio_item' category=category %}">
+            {% csrf_token %}
+            {{ form|crispy }}
+
+            <button class="btn" type="submit">Save</button>
+        </form>
+    </div>
+
+    {% endblock content %}

@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block extra_headers %}
+    <title>Delete Post</title>
+    <link rel="stylesheet" href="{% static 'blog/post_confirm_delete.css' %}">
+
+{% endblock extra_headers %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>Delete Post</h1>
+        <p>Are you sure you want to delete the post <strong>"{{ object.title }}"</strong>? This action cannot be undone.</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+            <a href="{% url 'post_detail' object.pk %}" class="btn">Cancel</a>
+        </form>
+
+        <div class="extra-links">
+            <p><a href="{% url 'home' %}">Back to Homepage</a></p>
+        </div>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,119 @@
+/* Portfolio Item Layout */
+.portfolio-item {
+    padding: 40px 20px;
+}
+
+/* Title */
+.item-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+/* Image + Description Section */
+.about-section {
+    padding: 20px 0;
+    background: linear-gradient(135deg, #dbeafe 0%, #fed7aa 100%);
+    border-radius: 12px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.about-image {
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+}
+
+.about-content{
+    background: linear-gradient(135deg, #dbeafe 0%, #fed7aa 100%);
+    border-radius: 16px;
+    padding: 40px;
+    margin-top: 0;
+}
+.about-content h2 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #1e3a8a;
+    margin-bottom: 24px;
+}
+
+.about-content p {
+    font-size: 1.125rem;
+    color: #374151;
+    margin-bottom: 24px;
+    line-height: 1.8;
+}
+
+/* Other Info Section */
+.item-details {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.item-details li {
+    font-size: 1.25rem;
+    color: #374151;
+    margin-bottom: 1px;
+}
+
+/* Back Link Button */
+.back-link {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.button-secondary {
+    background: #1e3a8a;
+    color: white;
+}
+
+.button-secondary:hover {
+    background: #2563eb;
+}
+
+/* When description only (no image) */
+.item-description {
+    background: linear-gradient(135deg, #dbeafe 0%, #fed7aa 100%);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    max-width: 800px;   /* keeps it nicely sized */
+
+    /* Centers it in both mobile and desktop */
+    grid-column: 1 / -1; /* Span all available columns */
+    justify-self: center; /* Center within the grid area */
+    width: 100%; /* Ensure it respects max-width */
+}
+
+.item-description p {
+    font-size: 1.25rem;
+    color: #374151;
+    line-height: 1.8;
+}

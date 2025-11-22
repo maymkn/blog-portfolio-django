@@ -1,0 +1,271 @@
+
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block extra_headers %}
+    <title>Blog Post - {{post.title}}</title>
+    <link rel="stylesheet" href="{% static 'blog/post_detail.css' %}">
+
+{% endblock extra_headers %}
+
+{% block content %}
+    
+    <!-- Loading State (Initially hidden) -->
+    <div class="skeleton-container" id="loadingState" style="display: none;">
+        <div class="max-w-4xl container">
+            <div class="skeleton-back"></div>
+            <div class="skeleton-title"></div>
+            <div class="skeleton-subtitle"></div>
+            <div class="skeleton-image"></div>
+            <div class="skeleton-content">
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line short"></div>
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line short"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Not Found State (Initially hidden) -->
+    <div class="not-found" id="notFoundState" style="display: none;">
+        <div>
+            <h2>Post not found</h2>
+            <a href="{% url 'blog-home' %}" class="back-button">Back to Blog</a>
+        </div>
+    </div>
+
+    <!-- Blog Post Content -->
+    <div id="blogPostContent">
+        <!-- Header -->
+        <header class="post-header">
+            <div class="max-w-4xl container">
+                <a href="{% url 'post-update' slug=post.slug %}" class="back-link">
+                    Edit Post
+                </a>
+                
+                <span class="category-badge">{{post.category}}</span>
+                
+                <h1 class="post-title">{{post.title}}</h1>
+                
+                <p class="post-subtitle">{{post.title}}</p>
+                
+                <div class="post-meta">
+                    <div class="meta-item">
+                        <svg class="meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <span>{{post.created_date}}</span>
+                    </div>
+                    
+                    
+                    
+                    <button class="share-button" id="shareButton">
+                        <svg class="meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
+                        </svg>
+                        Share
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Cover Image -->
+        <div class="max-w-6xl container cover-image-container">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" 
+                 alt="A blog photo" class="cover-image">
+        </div>
+
+        <!-- Content -->
+        <article class="content-section">
+            <div class="max-w-4xl container">
+                <div class="article-content">
+                <strong><p>Note: This is a random text to act as a filler as I figure out how to work with auto-styling in django.</p>
+                     <p>The photos too! It's meant to preserve the structure I want. Update coming soon! Yours faithfully, Mayen Magot</p>
+                    <p>The next paragraph is the article. The rest is hardcoded.</p>
+                    <p>Scroll to the bottom for comments section.</p>
+                </strong>
+
+                    <p>{{post.content}}</p>
+                    <p>In today's rapidly evolving educational landscape, the role of school leaders is undergoing a profound transformation. The digital age has brought both unprecedented challenges and opportunities for educational institutions, requiring leaders to adapt and develop new competencies.</p>
+
+                    <h2>The Changing Role of Educational Leaders</h2>
+                    
+                    <p>Traditional models of educational leadership focused primarily on administrative tasks, curriculum management, and staff supervision. While these responsibilities remain important, modern educational leaders must now navigate a much more complex ecosystem.</p>
+                    
+                    <blockquote>
+                        "The most effective educational leaders are those who can balance technological innovation with human-centered approaches to teaching and learning."
+                    </blockquote>
+                    
+                    <p>Digital transformation has expanded the scope of educational leadership to include:</p>
+                    
+                    <ul>
+                        <li>Technology integration and digital literacy development</li>
+                        <li>Data-driven decision making and analytics</li>
+                        <li>Cybersecurity and digital privacy concerns</li>
+                        <li>Remote and hybrid learning models</li>
+                        <li>Digital equity and access issues</li>
+                    </ul>
+                    
+                    <h2>Essential Skills for Future-Ready Leaders</h2>
+                    
+                    <p>As we look toward the future, several key competencies will distinguish effective educational leaders:</p>
+                    
+                    <h3>Digital Fluency</h3>
+                    
+                    <p>Leaders don't need to be technology experts, but they must understand enough to make informed decisions about digital tools, platforms, and strategies. This includes understanding the pedagogical implications of different technologies and how they can enhance learning outcomes.</p>
+                    
+                    <h3>Adaptive Leadership</h3>
+                    
+                    <p>The pace of change in education requires leaders who can pivot quickly, experiment with new approaches, and learn from both successes and failures. Adaptive leaders create cultures of innovation where calculated risk-taking is encouraged.</p>
+                    
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                         alt="Collaborative leadership">
+                    
+                    <h3>Data Literacy</h3>
+                    
+                    <p>With the proliferation of educational technology comes vast amounts of data. Effective leaders can interpret this data to identify trends, measure impact, and make evidence-based decisions that improve student outcomes.</p>
+                    
+                    <h2>Building a Culture of Digital Innovation</h2>
+                    
+                    <p>Perhaps the most critical role of future educational leaders is fostering a culture that embraces change and innovation. This involves:</p>
+                    
+                    <ol>
+                        <li>Creating shared vision and buy-in among stakeholders</li>
+                        <li>Providing ongoing professional development</li>
+                        <li>Celebrating innovation and learning from failure</li>
+                        <li>Ensuring equitable access to technology and resources</li>
+                        <li>Building partnerships with industry and community</li>
+                    </ol>
+                    
+                    <p>The leaders who will thrive in the coming decade are those who view technology not as an add-on, but as an integral component of teaching and learning. They understand that the human element—relationships, empathy, and community—remains at the heart of education, even as digital tools transform how we deliver it.</p>
+                    
+                    <p>By developing these future-ready competencies and fostering cultures of innovation, educational leaders can ensure their institutions not only survive but thrive in the digital age.</p>
+                </div>
+
+                <!-- Tags -->
+                <div class="tags-section">
+                    <h3 class="tags-title">Tags</h3>
+                    <div class="tags-container">
+                        <span class="tag">Educational Leadership</span>
+                        <span class="tag">Digital Transformation</span>
+                        <span class="tag">Future Skills</span>
+                        <span class="tag">Technology Integration</span>
+                        <span class="tag">Innovation</span>
+                    </div>
+                </div>
+                <!-- Comments -->
+                <div class="comment-section">
+            <h3>Comments</h3>
+            {% for comment in comments %}
+                <div class="comment-header">
+                    <p><strong>{{comment.full_name}}</strong></p>
+                    <p>{{comment.created_date}}</p>
+                </div>
+                <div class="comment-content">{{comment.content}}</div>
+            {% empty %}
+                <p>No comments yet. Start the conversation...</p>
+            {% endfor %}
+
+                <div class="comment-form-container">
+                    <h3>Add a comment</h3>
+                    {% load crispy_forms_tags %}
+                    <form method="post" action="{% url 'post-detail' slug=post.slug %}">
+                    {% csrf_token %}
+                    
+                    {{ form|crispy }}
+                    <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+            </div>
+            
+            
+        </article>
+
+        <!-- Related Posts -->
+        <section class="related-posts">
+            <div class="max-w-7xl container">
+                <h2 class="related-title">Related Articles</h2>
+                <div class="related-grid">
+                    
+                    {% for post in related_posts %}
+                    <div class="related-card">
+                        <a href="{% url 'post-detail' slug=post.slug%}" class="related-link">
+                
+                            <img src="{{ post.image.url|default:'/media/samples/blog_default.jpg' }}" 
+                                alt="photo" class="related-image">
+                            <div class="related-content">
+                    
+                                <h3 class="related-card-title">{{post.title}}</h3>
+                                <p class="related-subtitle">{{post.title}}</p>
+                            </div>
+                        </a>
+                    </div>
+                            
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock content %}
+
+{% block extra_scripts %} 
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const shareButton = document.getElementById('shareButton');
+            const loadingState = document.getElementById('loadingState');
+            const notFoundState = document.getElementById('notFoundState');
+            const blogPostContent = document.getElementById('blogPostContent');
+            
+            // Simulate loading state
+            // In a real app, you would show this while fetching data
+            // For demo purposes, we'll show it briefly then hide it
+            loadingState.style.display = 'block';
+            blogPostContent.style.display = 'none';
+            
+            setTimeout(() => {
+                loadingState.style.display = 'none';
+                blogPostContent.style.display = 'block';
+                
+                // Uncomment the line below to simulate a "not found" state
+                // showNotFoundState();
+            }, 500);
+            
+            // Share functionality
+            shareButton.addEventListener('click', async function() {
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                            title: document.querySelector('.post-title').textContent,
+                            text: document.querySelector('.post-subtitle').textContent,
+                            url: window.location.href,
+                        });
+                    } catch (err) {
+                        console.log('Error sharing:', err);
+                    }
+                } else {
+                    // Fallback for browsers that don't support Web Share API
+                    navigator.clipboard.writeText(window.location.href).then(() => {
+                        alert('Link copied to clipboard!');
+                    });
+                }
+            });
+            
+            // Function to show not found state (for demo purposes)
+            function showNotFoundState() {
+                loadingState.style.display = 'none';
+                blogPostContent.style.display = 'none';
+                notFoundState.style.display = 'flex';
+            }
+        });
+    </script>
+
+{% endblock extra_scripts%}

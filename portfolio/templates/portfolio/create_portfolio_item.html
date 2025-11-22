@@ -1,0 +1,23 @@
+   {% extends 'core/base.html' %}
+
+ {% load static %}
+        
+    {% block extra_headers %}
+        <title>Portfolio - Add {{ category }}</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'portfolio/create_portfolio_item.css' %}">
+    {% endblock extra_headers %}
+    
+    {% block content %}
+
+<div class="form-container">
+    <h2>Create {{ category }}</h2>
+
+    {% load crispy_forms_tags %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button class="btn">Save</button>
+    </form>
+</div>
+
+    {% endblock content %}

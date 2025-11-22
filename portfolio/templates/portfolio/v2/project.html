@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+
+{% block extra_headers %}
+    <link rel="stylesheet" href="{% static 'portfolio/v2/project.css' %}">
+{% endblock extra_headers %}
+
+{% block content %}
+<div class="project-detail">
+    <div class="project-header">
+        <h1>{{ project.title }}</h1>
+        <div class="project-dates">
+            <span>{{ project.start_date }} - {% if project.end_date %}{{ project.end_date }}{% else %}Present{% endif %}</span>
+        </div>
+    </div>
+    
+    {% if project.image %}
+    <div class="project-image">
+        <img src="{{ project.image.url }}" alt="{{ project.title }}">
+    </div>
+    {% endif %}
+    
+    <div class="project-description">
+        {{ project.description|linebreaks }}
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+ {% block extra_headers %}
+    <link rel="stylesheet" href="{% static 'portfolio/v2/achievement.css' %}">
+  {% endblock extra_headers %}
+  
+    {% block content %}
+
+    <!--For main content-->
+<div class="achievement-detail">
+    <div class="achievement-header">
+        <h1>{{ achievement.title }}</h1>
+        <div class="achievement-meta">
+            <span class="issuer">{{ achievement.issuer }}</span>
+            <span class="date">{{ achievement.date_achieved }}</span>
+            <span class="category">{{ achievement.category }}</span>
+        </div>
+    </div>
+    
+    {% if achievement.image %}
+    <div class="achievement-image">
+        <img src="{{ achievement.image.url }}" alt="{{ achievement.title }}">
+    </div>
+    {% endif %}
+    
+    <div class="achievement-description">
+        <p>{{ achievement.description }}</p>
+    </div>
+</div>
+   
+    {% endblock content %}

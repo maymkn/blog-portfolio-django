@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paul Kut - Educational Leader</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- GLOBAL VARIABLES & RESET --- */
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #3b82f6;
+            --accent: #d97706;
+            --dark: #111827;
+            --gray: #6b7280;
+            --light: #f3f4f6;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            color: #334155;
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .max-w-5xl { max-width: 1024px; }
+        .max-w-7xl { max-width: 1280px; }
+        .text-center { text-align: center; }
+
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .button-outline {
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+        }
+        .button-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+        .button-secondary {
+            background: var(--primary);
+            color: white;
+        }
+        .button-outline-dark {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        .button-outline-dark:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* --- NAVIGATION BAR --- */
+        .main-nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-weight: 500;
+            color: var(--dark);
+        }
+        .nav-links a:hover {
+            color: var(--primary-light);
+        }
+
+        /* --- HERO SECTION (MERGED STYLES) --- */
+        .hero {
+            position: relative;
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            overflow: hidden;
+            text-align: center;
+        }
+        .hero-background {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); /* Subtle pattern */
+            opacity: 0.1;
+        }
+        .hero-badge {
+            background: rgba(255,255,255,0.1);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+        .hero-gradient {
+            background: linear-gradient(to right, #93c5fd, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            color: #dbeafe;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* --- STATS SECTION --- */
+        .stats-section {
+            padding: 60px 0;
+            background: white;
+            transform: translateY(-30px);
+            position: relative;
+            z-index: 10;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-icon svg {
+            width: 32px;
+            height: 32px;
+            color: var(--primary-light);
+            margin-bottom: 10px;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--dark);
+        }
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* --- ABOUT PREVIEW --- */
+        .about-section { padding: 80px 0; }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-image {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .about-content p { margin-bottom: 20px; }
+
+        /* --- BLOG SECTION --- */
+        .blog-section { padding: 80px 0; background: var(--light); }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.5rem; color: var(--primary); }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .blog-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .blog-card:hover { transform: translateY(-5px); }
+        .card-image-container { height: 200px; overflow: hidden; position: relative; }
+        .card-image { width: 100%; height: 100%; object-fit: cover; }
+        .card-content { padding: 24px; }
+        .category-badge { 
+            color: var(--primary-light); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; 
+        }
+        .card-title { font-size: 1.25rem; margin: 10px 0; color: var(--dark); }
+        .card-meta { 
+            display: flex; gap: 15px; margin-top: 15px; color: var(--gray); font-size: 0.85rem; 
+        }
+        .meta-icon { width: 16px; height: 16px; margin-right: 5px; vertical-align: middle; }
+
+        /* --- FEATURED WORK (Gallery) --- */
+        .featured-section { padding: 80px 0; }
+        .featured-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .portfolio-image-container img { width: 100%; border-radius: 12px; }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-col h3 { color: white; margin-bottom: 20px; }
+        .footer-col a { color: #9ca3af; display: block; margin-bottom: 10px; }
+        .footer-col a:hover { color: white; }
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; /* Needs JS for toggle in real production */ }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">Paul Kut</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        
+        <section class="hero">
+            <div class="hero-background"></div>
+            <div class="max-w-5xl container">
+                <div class="hero-content">
+                    <span class="hero-badge">Educator • Leader • Innovator</span>
+                    <h1>
+                        Transforming Education,
+                        <br>
+                        <span class="hero-gradient">Inspiring Leaders</span>
+                    </h1>
+                    <p>Passionate about creating transformative learning experiences and empowering the next generation of educational leaders.</p>
+                    <div class="hero-buttons">
+                        <a href="about.html" class="button button-outline">Learn More About Me</a>
+                        <a href="blog.html" class="button button-outline">Read My Blog</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="max-w-7xl container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path></svg>
+                        </div>
+                        <div class="stat-number">10,000+</div>
+                        <div class="stat-label">Students Impacted</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                        </div>
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Publications</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                        </div>
+                        <div class="stat-number">25+</div>
+                        <div class="stat-label">Awards & Recognition</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <div class="max-w-7xl container">
+                <div class="about-grid">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=1000&fit=crop" alt="Professional portrait" class="about-image">
+                    </div>
+                    <div class="about-content">
+                        <h2>Bridging Education & Leadership</h2>
+                        <p>With over 15 years of experience in education and leadership development, I've dedicated my career to creating innovative learning environments that empower individuals to reach their full potential.</p>
+                        <p>My work focuses on educational equity, transformative pedagogy, and developing leaders who can drive meaningful change in their communities.</p>
+                        <a href="about.html" class="button button-secondary">Read Full Bio</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="blog-section">
+            <div class="max-w-7xl container">
+                <div class="section-header">
+                    <h2>Latest Insights</h2>
+                    <p>Thoughts on education, leadership, and innovation</p>
+                </div>
+                <div class="blog-grid">
+                    <div class="blog-card">
+                        <a href="blog-post.html" class="blog-card-link">
+                            <div class="card-image-container">
+                                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1171&q=80" alt="Educational leadership" class="card-image">
+                            </div>
+                            <div class="card-content">
+                                <span class="category-badge">Leadership</span>
+                                <h3 class="card-title">The Future of Educational Leadership</h3>
+                                <p class="card-subtitle">How technology is reshaping the role of educational leaders.</p>
+                                <div class="card-meta">
+                                    <div class="meta-item"><span>Jun 15, 2023</span></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="blog-card">
+                        <a href="blog-post.html" class="blog-card-link">
+                            <div class="card-image-container">
+                                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1170&q=80" alt="AI in education" class="card-image">
+                            </div>
+                            <div class="card-content">
+                                <span class="category-badge">Innovation</span>
+                                <h3 class="card-title">Integrating AI Tools in the Classroom</h3>
+                                <p class="card-subtitle">Enhance learning experiences while maintaining the human touch.</p>
+                                <div class="card-meta">
+                                    <div class="meta-item"><span>May 22, 2023</span></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="blog-card">
+                        <a href="blog-post.html" class="blog-card-link">
+                            <div class="card-image-container">
+                                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1122&q=80" alt="Inclusive classroom" class="card-image">
+                            </div>
+                            <div class="card-content">
+                                <span class="category-badge">Education</span>
+                                <h3 class="card-title">Creating Inclusive Classrooms</h3>
+                                <p class="card-subtitle">Strategies to support students with diverse learning needs.</p>
+                                <div class="card-meta">
+                                    <div class="meta-item"><span>Apr 10, 2023</span></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a href="blog.html" class="button button-outline-dark">View All Posts</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Paul Kut</h3>
+                    <p>Empowering the next generation of educational leaders.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect</h3>
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Email Me</a>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Paul Kut. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block extra_headers %}
+    <title>{% if form.instance.pk %}Update Post {% else %}Create Post {% endif %}</title>
+    <link rel="stylesheet" href="{% static 'blog/post_form.css' %}">
+
+{% endblock extra_headers %}
+
+{% block content %}
+
+    <div class="post-container">
+        <h1>
+            {% if form.instance.pk %}
+                Update Post
+            {% else %}
+                Create New Post
+            {% endif %}
+        </h1>
+
+        <!-- Django messages -->
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% load crispy_forms_tags %}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn">
+                {% if form.instance.pk %}Update{% else %}Publish{% endif %}
+            </button>
+        </form>
+    </div>
+{% endblock content %}

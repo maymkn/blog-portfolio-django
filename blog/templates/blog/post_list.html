@@ -1,0 +1,202 @@
+
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block extra_headers %}
+    <title>Blog - Thoughts and stories</title>
+   <link rel="stylesheet" type="text/css" href="{% static 'blog/post_list.css' %}">
+
+{% endblock extra_headers %}
+
+{% block content %}
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Blog</h1>
+                <p>Insights on education, leadership, and creating transformative learning experiences</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search and Filters -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <div class="search-box">
+                    <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <input 
+                        type="text" 
+                        class="search-input" 
+                        placeholder="Search articles..."
+                        id="searchInput"
+                    >
+                </div>
+                <div class="tabs-container" id="categoryTabs">
+                    <button class="tab active" data-category="all">All</button>
+                        {% for category in categories %}
+                    <button class="tab" data-category="{{category}}">{{category}}</button>
+                {% endfor %}
+                </div>
+
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Grid -->
+    <section class="blog-grid-section">
+        <div class="container">
+            <!-- Loading State -->
+            <div class="skeleton-grid" id="loadingState">
+                <div class="skeleton-card">
+                    <div class="skeleton-image"></div>
+                    <div class="skeleton-content">
+                        <div class="skeleton-badge"></div>
+                        <div class="skeleton-title"></div>
+                        <div class="skeleton-subtitle"></div>
+                        <div class="skeleton-meta"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card">
+                    <div class="skeleton-image"></div>
+                    <div class="skeleton-content">
+                        <div class="skeleton-badge"></div>
+                        <div class="skeleton-title"></div>
+                        <div class="skeleton-subtitle"></div>
+                        <div class="skeleton-meta"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card">
+                    <div class="skeleton-image"></div>
+                    <div class="skeleton-content">
+                        <div class="skeleton-badge"></div>
+                        <div class="skeleton-title"></div>
+                        <div class="skeleton-subtitle"></div>
+                        <div class="skeleton-meta"></div>
+                    </div>
+                </div>
+            </div>
+            <!--Post properties: [title, slug, content, excerpt, author, categories, 
+                featured image, created date, updated date, is featured]-->
+            <!-- Blog Posts Grid -->
+            <div class="blog-grid" id="blogGrid" style="display: none;">
+                {%  for post in posts %}
+    
+                <div class="blog-card" data-category="{{post.category}}" data-search="{{ post.title }} {{ post.category }} {{ post.created_date }}">
+                    <a href="{% url 'post-detail' slug=post.slug %}" class="blog-card-link">
+                        <div class="card-image-container">
+                            {% if post.featured_image %} 
+                            <img src="{{ post.featured_image.url }}" alt="Photo" class="card-image"> 
+                            {% else %} <img src="/media/samples/blog_default.jpg" alt="Photo" class="card-image"> 
+                            {% endif %}
+                            
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <span class="category-badge">{{post.category}}</span>
+                            <h3 class="card-title">{{post.title}}</h3>
+                            <p class="card-subtitle">{{post.title}}</p>
+                            <div class="card-meta">
+                                <div class="meta-item">
+                                    <svg class="meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    </svg>
+                                    <span>{{post.created_date}}</span>
+                                </div>
+                            </div>
+                            <div class="read-more">
+                                Read More
+                                <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <p>No posts found matching your criteria.</p>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block extra_scripts %} 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const categoryTabs = document.getElementById('categoryTabs');
+            const blogGrid = document.getElementById('blogGrid');
+            const loadingState = document.getElementById('loadingState');
+            const emptyState = document.getElementById('emptyState');
+            const blogCards = document.querySelectorAll('.blog-card');
+            const tabs = document.querySelectorAll('.tab');
+            
+            let activeCategory = 'all';
+            let searchQuery = '';
+            
+            // Simulate loading state
+            setTimeout(() => {
+                loadingState.style.display = 'none';
+                blogGrid.style.display = 'grid';
+            }, 1500);
+            
+            // Category tab functionality
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    // Update active category
+                    activeCategory = this.getAttribute('data-category');
+                    // Filter posts
+                    filterPosts();
+                });
+            });
+            
+            // Search functionality
+            searchInput.addEventListener('input', function() {
+                searchQuery = this.value.toLowerCase();
+                filterPosts();
+            });
+            
+            // Filter posts based on category and search
+            function filterPosts() {
+                let visibleCount = 0;
+                
+                blogCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    const searchText = card.getAttribute('data-search').toLowerCase();
+                    
+                    const matchesCategory = activeCategory === 'all' || category === activeCategory;
+                    const matchesSearch = searchQuery === '' || searchText.includes(searchQuery);
+                    
+                    if (matchesCategory && matchesSearch) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Show empty state if no posts match
+                if (visibleCount === 0) {
+                    emptyState.style.display = 'block';
+                    blogGrid.style.display = 'none';
+                } else {
+                    emptyState.style.display = 'none';
+                    blogGrid.style.display = 'grid';
+                }
+            }
+        });
+    </script>
+{% endblock extra_scripts%}

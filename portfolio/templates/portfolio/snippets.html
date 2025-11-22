@@ -1,0 +1,50 @@
+    {% block extra_headers %}
+    <!--For stylesheets-->
+    {% endblock extra_headers %}
+    
+    {% block content %}
+
+    <!--For main content-->
+    {% endblock content %}
+    
+    {% block extra_scripts %} 
+    <!--For additional Javascript-->
+    {% endblock extra_scripts%}
+
+photos:
+At UN
+https://scontent.fnbo19-1.fna.fbcdn.net/v/t39.30808-6/491470793_24163839836550783_2892542980924056885_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=669761&_nc_eui2=AeFIR5_Kl9bDakEZg-np5urYkNbt-wVvuOSQ1u37BW-45G-e7kivw0v28LEy79EQKbA4lUbVsNPryALNIYm0On4j&_nc_ohc=9CjiemhIzX0Q7kNvwEBdB9Z&_nc_oc=Adkdwq5XTSgf6DJ3FyTByQh6_NDr4omRE308mSh6P0Es5fn0ohkfBYgSCOH2VqRMbx8Yxn_Ci55V5yr7IbYTUGA2&_nc_zt=23&_nc_ht=scontent.fnbo19-1.fna&_nc_gid=cNONZo_VonqgqphgkJBM-g&oh=00_AfjIgUsYl4sq7RbcLHfwLa3AMA5UBZAK-Bfn6P3GtYwoQg&oe=69254326
+
+Chilling
+https://scontent.fnbo19-1.fna.fbcdn.net/v/t39.30808-6/491412484_24163840186550748_5075858543732887275_n.jpg?stp=dst-jpg_s1080x2048_tt6&_nc_cat=108&ccb=1-7&_nc_sid=669761&_nc_eui2=AeF6VbaXtwD1mmXtIQfPa5kpxiBgJWJK6L3GIGAlYkrovbo25Ho2HlHZAy-q-XeeWP9LrL92UEKsjmnqMyxjwQhq&_nc_ohc=ijfcU8Kt9EcQ7kNvwEjsblQ&_nc_oc=Adn55fk6SSEH_dbyBOEpNPIQOzN7D1bFtVMYlozoSlSS1v8Vbphbr8HFkALi5-wU8B94-qbuidbPGQM4CDW_951g&_nc_zt=23&_nc_ht=scontent.fnbo19-1.fna&_nc_gid=cNONZo_VonqgqphgkJBM-g&oh=00_AfjaR05pEFZbqJI-fLp_YGaAM3U6I0s6feQLQAqinnmSbw&oe=69252B92
+
+Bull:
+https://scontent.fnbo19-2.fna.fbcdn.net/v/t39.30808-6/486703441_24034018612866240_4793075474421436650_n.jpg?stp=dst-jpg_s1080x2048_tt6&_nc_cat=110&ccb=1-7&_nc_sid=669761&_nc_eui2=AeEguNkU_SwqYD0S0AiR0egfWsaWitxLmflaxpaK3EuZ-XKn5_GUE-WWTUjQU--UPcK8dNk3Gg3jIeZFxPoYUdj6&_nc_ohc=nUkFaMdPReoQ7kNvwFYOHqy&_nc_oc=Adl18ohsM9JgalL8a81DZECpMSw5uURS5GU1hpjhQSwb7pcRBalw1ss7Ml8vyeDJb41OJAyTFAkLW9sK8YYcXAnA&_nc_zt=23&_nc_ht=scontent.fnbo19-2.fna&_nc_gid=cNONZo_VonqgqphgkJBM-g&oh=00_AfgbFjKZTEJH9uPU2kI_Wn1iW1s1f2pFrb8PZaE_PWG61g&oe=69253229
+
+Hali:
+https://scontent.fnbo19-1.fna.fbcdn.net/v/t39.30808-6/547184423_25368893482712073_2945916229629112274_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHL8OevLAMmjP1KVhA5eiER8Jq5ItrUGYjwmrki2tQZiEav0xvPmGDoTQ6FV6LO6V1K8D-dr1mFWDt92vASEZ1g&_nc_ohc=CppVmePWTecQ7kNvwGRWmI3&_nc_oc=AdmlsfpOxHBiSHyj7g7PIar9iXGxNrJlESxi4pm7u93Mql18vINEbp6ixwkZXR99F9EuKBbr0qduwXqIzQHYHbSI&_nc_zt=23&_nc_ht=scontent.fnbo19-1.fna&_nc_gid=gxXjVltBl48Keq7fbNlU_Q&oh=00_Afh1dFay1a5f9mF5Pi5zqTzDb6_yMvcrUHE4G953pjjxfA&oe=692545D0
+<body>
+    <div class="container">
+        <h2>Create Portfolio Item</h2>
+
+        <form action="{% url 'select_category' %}" onchange="this.form.submit" method="GET">
+        
+            <select name="category">
+                <option selected disabled>-- Choose category --</option>
+                {% for key, value in categories.items %}
+                    <option value="{{ key }}">{{ value.verbose }}</option>
+                {% endfor %}
+            </select>
+
+            <button class="btn" type="submit">
+                Continue
+            </button>
+        </form>
+    </div>
+
+</body>
+
+<!--
+
+</html>
+-->

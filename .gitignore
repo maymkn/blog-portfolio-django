@@ -1,0 +1,74 @@
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+*.log
+
+# --- Django ---
+/staticfiles/
+media/
+         
+# --- Environments ---
+venv/
+.env
+.env.*
+
+
+# --- Build ---
+dist/
+build/
+*.bak
+*.swp
+
+
+# --- IDEs & OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+
+
+# Logs / Reports
+# ========================
+*.log
+logs/
+coverage/
+htmlcov/
+.tox/
+.nox/
+.cache/
+.pytest_cache/
+.coverage
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+*.pid
+*.seed
+*.pid.lock
+
+
+# Testing / CI
+# ========================
+.jenkins/
+.travis.yml
+.circleci/
+.github/
+
+# Temporary / Backup Files
+# ========================
+*.bak
+*.tmp
+*.old
+*.orig
+*.rej
+*.swo
+*.swp
+*~
+

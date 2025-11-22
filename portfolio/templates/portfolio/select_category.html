@@ -1,0 +1,25 @@
+   {% extends 'core/base.html' %}
+
+    {% load static %}
+    
+    {% block extra_headers %}
+    <title>Portfolio - Paul Kut</title>
+    <link rel="stylesheet" href="{% static 'portfolio/select_category.css' %}">
+    {% endblock extra_headers %}
+    
+    {% block content %}
+
+<div class="category-container">
+    <h2>Select Category</h2>
+
+    <form method="GET">
+        <select onchange="window.location.href = '/portfolio/create/' + this.value + '/'">
+            <option selected disabled>Choose...</option>
+            {% for key, data in categories.items %}
+                <option value="{{ key }}">{{ data.verbose }}</option>
+            {% endfor %}
+        </select>
+    </form>
+</div>
+
+    {% endblock content %}

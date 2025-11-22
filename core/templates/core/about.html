@@ -1,0 +1,169 @@
+
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block extra_headers %}
+    <link rel="stylesheet" type="text/css" href="{% static 'core/about.css' %}">
+{% endblock extra_headers %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>About Me</h1>
+                <p>This blog is a reflection on my journey through the world and life.
+            Through sharing ideas, experiences and insights into how I see the world.
+            I hope to inspire others to live boldly and with curiosity and purpose.
+            And to make a difference in their own lives and the lives of those around them</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bio Section -->
+    <section class="bio">
+        <div class="container">
+            <div class="bio-grid">
+                <div class="bio-image">
+                    <img src="/media/samples/Mayen.jpg" alt="Sample image">
+                </div>
+                <div class="bio-content">
+                    <h2>The Name</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section class="expertise">
+        <div class="container">
+            <div class="section-header">
+                <h2>Areas of Expertise</h2>
+                <p>Where passion meets practice</p>
+            </div>
+            <div class="expertise-grid">
+                <!-- Expertise 1 -->
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                            <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"></path>
+                        </svg>
+                    </div>
+                    <h3>Lorem ipsum</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                
+                <!-- Expertise 2 -->
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                        </svg>
+                    </div>
+                    <h3>Dolor sit amet</h3>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                
+                <!-- Expertise 3 -->
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <h3>Ut enim ad</h3>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                
+                <!-- Expertise 4 -->
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                    </div>
+                    <h3>Minim vienam</h3>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline">
+        <div class="container">
+            <div class="section-header">
+                <h2>Career Journey</h2>
+                <p>Key milestones and experiences</p>
+            </div>
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                <div class="timeline-items">
+                    <!-- Timeline Item 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-card">
+                                <div class="timeline-year">2023-Present</div>
+                                <h3 class="timeline-title">Experience 1</h3>
+                                <div class="timeline-organization">Place A</div>
+                                <p class="timeline-description">Did X,Y,Z</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeline Item 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-card">
+                                <div class="timeline-year">2018-2023</div>
+                                <h3 class="timeline-title">Experience 2</h3>
+                                <div class="timeline-organization">Place B</div>
+                                <p class="timeline-description">Directed innovative programs in educational leadership and teacher preparation.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeline Item 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-card">
+                                <div class="timeline-year">2014-2018</div>
+                                <h3 class="timeline-title">Experience 3</h3>
+                                <div class="timeline-organization">Place C</div>
+                                <p class="timeline-description">Did my job.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeline Item 4 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-card">
+                                <div class="timeline-year">2010-2014</div>
+                                <h3 class="timeline-title">Experience 4</h3>
+                                <div class="timeline-organization">Place D</div>
+                                <p class="timeline-description">Did my job, again.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

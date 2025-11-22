@@ -1,0 +1,39 @@
+    {% extends 'core/base.html' %}
+    {% load static %}
+    {% block extra_headers %}
+        <title>Update Account</title>
+        <link rel="stylesheet" href="{% static 'users/update_user.css' %}">
+    {% endblock extra_headers %}
+    
+    {% block content %}
+
+
+    <div class="form-container">
+        <h1>Update Your Account</h1>
+
+        <!-- Django messages -->
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <!-- User form -->
+            {{ user_form.as_p }}
+
+            <!-- Profile form -->
+            {{ profile_form.as_p }}
+
+            <button type="submit" class="btn">Save Changes</button>
+        </form>
+
+        <div class="extra-links">
+            <p><a href="{% url 'profile' %}">Back to Profile</a></p>
+        </div>
+    </div>
+{% endblock content %}

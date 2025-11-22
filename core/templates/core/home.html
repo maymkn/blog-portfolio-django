@@ -1,0 +1,145 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+    
+{% block extra_headers %}
+    <link rel="stylesheet" type="text/css" href="{% static 'core/home.css' %}">
+{% endblock extra_headers %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background"></div>
+        
+        <div class="max-w-5xl container">
+            <div class="hero-content">
+                <span class="hero-badge">Educator • Leader • Rapper</span>
+                <h1>
+                    The Owner,
+                    <br>
+                    <span class="hero-gradient">Then the tagline here!</span>
+                </h1>
+                <p>This just a placeholder for info you want to put here </p>
+                <div class="hero-buttons">
+                    <a href="{% url 'about' %}" class="button button-outline">
+                        Learn More About Me
+                    </a>
+                    <a href="{% url 'blog-home' %}" class="button button-outline">
+                        Read My Blog
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
+    <!-- About Preview -->
+    <section class="about-section">
+        <div class="max-w-7xl container">
+            <div class="about-grid">
+                <div>
+                    <img src="/media/samples/Mayen.jpg" alt="Professional portrait" class="about-image">
+                </div>
+                <div class="about-content">
+                    <h2>A heading for about section</h2>
+                    <p>With over 5 years of experience in education and leadership development, I've dedicated my career to creating innovative learning environments that empower individuals to reach their full potential.</p>
+                    <p>My work focuses on  developing leaders who can drive meaningful change in their communities.</p>
+                    <a href="{% url 'about'%}" class="button button-secondary">
+                        Read Full Bio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Blog Posts -->
+    <section class="blog-section">
+        <div class="max-w-7xl container">
+            <div class="section-header">
+                <h2>Latest Insights</h2>
+                <p>Thoughts on coding, among others</p>
+            </div>
+            <div class="blog-grid">
+                <!-- Blog Post 1 -->
+            {%  for post in posts %}
+    
+                <div class="blog-card" data-category="{{post.category}}" data-search="future education leadership trends">
+                    <a href="{% url 'post-detail' slug=post.slug %}" class="blog-card-link">
+                        <div class="card-image-container">
+                            <img src="{{photo.featured_image.url|default:'/media/samples/blog_default.jpg'}}" 
+                                 alt="Photo" class="card-image">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <span class="category-badge">{{post.category}}</span>
+                            <h3 class="card-title">{{post.title}}</h3>
+                            <p class="card-subtitle">{{post.title}}</p>
+                            <div class="card-meta">
+                                <div class="meta-item">
+                                    <svg class="meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    </svg>
+                                    <span>{{post.created_date}}</span>
+                                </div>
+                                <div class="meta-item">
+                                    <svg class="meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <span>8 min</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+
+            <div class="text-center">
+                <a href="{% url 'blog-home' %}" class="button button-outline-dark">
+                    View All Posts
+                </a>
+            </div>
+        </div>
+    </section>
+
+    {% if recent_works %}
+    <!-- Featured Work -->
+    <section class="featured-section">
+        <div class="max-w-7xl container">
+            <div class="section-header">
+                <h2>Featured Work</h2>
+                <p>Recent projects and achievements</p>
+            </div>
+            <div class="featured-grid">
+                
+            {% for item in recent_works %}
+                <div class="portfolio-card">
+                    <div class="portfolio-image-container">
+                        <img src="{{ item.photo.url|default:'/media/samples/trophy.jpg' }}" 
+                            alt="Photo" class="portfolio-image">
+                        <div class="portfolio-overlay"></div>
+                        <span class="portfolio-badge badge-research">{{item.category}}</span>
+                    </div>
+                    
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">{{item.title}}</h3>
+                        <p class="portfolio-description">
+                            {{item.description}}
+                        </p>
+                        
+                        <div class="portfolio-footer">
+                            <div class="portfolio-date">
+                                <i class="far fa-calendar-alt"></i>
+                                <span>{{item.start_date}}</span>
+                            </div>
+                            <a href="{% url 'portfolio_item_detail' pk=item.pk %}" class="portfolio-link">
+                                View Project
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}    
+    </section>
+     {% endif %}
+
+{% endblock content %}

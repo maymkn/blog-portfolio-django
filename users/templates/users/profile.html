@@ -1,0 +1,62 @@
+    {% extends 'core/base.html' %}
+    {% load static %}
+    {% block extra_headers %}
+        <title>{{ user.first_name }} {{ user.last_name }} - Profile</title>
+        <link rel="stylesheet" href="{% static 'users/profile.css' %}">
+    {% endblock extra_headers %}
+    
+    {% block content %}
+
+    <div class="profile-container">
+        {% if user.is_authenticated and user == request.user %}
+            <a href="{% url 'update_user' %}" class="btn">Edit Profile</a>
+        {% endif %}
+        <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+
+        {% if user.profile.image %}
+            <img src="{{ user.profile.image.url }}" alt="Profile picture" class="profile-image">
+        {% endif %}
+
+        <div class="profile-info">
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            {% if user.profile.bio %}
+                <p><strong>Bio:</strong> {{ user.profile.bio }}</p>
+            {% endif %}
+        </div>
+        
+        
+        
+        {% if posts %}
+           <section class="user-posts">
+            <div class="max-w-7xl container">
+                <h2 class="posts-title">Your posts:</h2>
+                <div class="posts-grid">
+                    
+                    {% for post in posts %}
+                    <div class="post-card">
+                        <a href="{% url 'post-detail' slug=post.slug%}" class="post-link">
+                
+                            <img src="{{ post.image.url|default:'/media/samples/blog_default.jpg' }}" 
+                                alt="photo" class="post-image">
+                            <div class="post-content">
+                    
+                                <h3 class="post-card-title">{{post.title}}</h3>
+                                <p class="post-subtitle">{{post.title}}</p>
+                            </div>
+                        </a>
+                    </div>
+                            
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </section>
+        {% endif %}
+        
+        <div class="extra-links">
+            <p><a href="{% url 'home' %}">Back to Homepage</a></p>
+        </div>
+    </div>
+
+    {% endblock content %}
+

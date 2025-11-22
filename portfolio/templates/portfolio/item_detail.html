@@ -1,0 +1,61 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block extra_headers %}
+<link rel="stylesheet" href="{% static 'portfolio/item_detail.css' %}">
+{% endblock extra_headers %}
+
+{% block content %}
+<div class="portfolio-item">
+
+  <!-- Title -->
+  <h2 class="item-title">{{ item.title }}</h2>
+
+  <!-- Image + Description -->
+  <section class="about-section">
+    <div class="about-grid">
+      {% if item.image %}
+        <div class="about-image-wrapper">
+          <img src="{{ item.image.url }}" alt="{{ item.title }}" class="about-image">
+        </div>
+        <div class="about-content">
+          <p>{{ item.description }}</p>
+        </div>
+      {% else %}
+        <div class="item-description">
+          <p>{{ item.description }}</p>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- Other Info -->
+  <div class="item-details">
+    <ul>
+      {% if item.issuer %}
+        <li><strong>Issuer:</strong> {{ item.issuer }}</li>
+      {% endif %}
+      {% if item.date_achieved %}
+        <li><strong>Date Achieved:</strong> {{ item.date_achieved }}</li>
+      {% endif %}
+      {% if item.organization %}
+        <li><strong>Organization:</strong> {{ item.organization }}</li>
+      {% endif %}
+      {% if item.role %}
+        <li><strong>Role:</strong> {{ item.role }}</li>
+      {% endif %}
+      {% if item.start_date %}
+        <li><strong>Start Date:</strong> {{ item.start_date }}</li>
+      {% endif %}
+      {% if item.end_date %}
+        <li><strong>End Date:</strong> {{ item.end_date }}</li>
+      {% endif %}
+    </ul>
+  </div>
+
+  <a href="{% url 'portfolio-home' %}" class="back-link button-secondary">
+    ← Back to portfolio
+  </a>
+
+</div>
+{% endblock content %}
