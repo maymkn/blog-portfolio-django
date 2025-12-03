@@ -31,6 +31,3 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-#if using v2, copy this and add it to the urlpatterns: path("", inclue(portfolio.vn2_urls))
-#now it will work

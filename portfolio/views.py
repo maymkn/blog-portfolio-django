@@ -140,9 +140,3 @@ def portfolio(request):
     context = {'portfolio_items': PortfolioItem.objects.all(), 'categories': custom_categories}
      
     return render(request, 'portfolio/portfolio_page.html', context)
-
-
-
-
-
-

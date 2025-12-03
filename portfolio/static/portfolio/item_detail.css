@@ -108,8 +108,8 @@
 
     /* Centers it in both mobile and desktop */
     grid-column: 1 / -1; /* Span all available columns */
-    justify-self: center; /* Center within the grid area */
-    width: 100%; /* Ensure it respects max-width */
+    justify-self: center;
+    width: 100%; 
 }
 
 .item-description p {
