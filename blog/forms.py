@@ -1,5 +1,6 @@
 from .models import Comment, Post
 from django import forms
+from ckeditor.widgets import CKEditorWidget
 
 class CommentForm(forms.ModelForm):
     subscribe = forms.BooleanField(
@@ -7,6 +8,7 @@ class CommentForm(forms.ModelForm):
         label="Subscribe to my newsletter",
         help_text="I consent to receiving email updates."
     )
+    content = forms.CharField(widget=CKEditorWidget())
 
     class Meta:
         model = Comment
@@ -14,8 +16,9 @@ class CommentForm(forms.ModelForm):
         fields = ["email","full_name", "content", "subscribe"]
 
 class PostForm(forms.ModelForm):
+    content = forms.CharField(widget=CKEditorWidget())
     class Meta:
         model = Post
-        fields = ['title', 'content', 'excerpt', 'category', 'featured_image', 'is_featured']
+        fields = ['title', 'content', 'category', 'featured_image']
         
         

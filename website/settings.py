@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'portfolio',
     'crispy_forms',
     'crispy_bootstrap5',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -139,6 +141,31 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+"""
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': '100%',
+        'extraPlugins': ','.join([
+            'uploadimage',
+            'image2',
+            'codesnippet',
+            'autogrow',
+        ]),
+        'autoGrow_minHeight': 300,
+        'autoGrow_maxHeight': 800,
+        'autoGrow_bottomSpace': 50,
+        'removePlugins': 'stylesheetparser',
+        'allowedContent': True,
+    }
+}
+
+"""
 
 LOGIN_REDIRECT_URL = reverse_lazy('home')
 #LOGOUT_REDIRECT_URL = reverse_lazy('home')

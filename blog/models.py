@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from django.urls import reverse
-
+#from ckeditor.fields import RichTextField
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
@@ -14,13 +14,11 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
     content = models.TextField()
-    excerpt = models.TextField(max_length=300, null=True, blank=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     featured_image = models.ImageField(upload_to='blog/', default='blog/blog_default.jpg', blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
-    is_featured = models.BooleanField(default=False)
 
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'slug': self.slug})

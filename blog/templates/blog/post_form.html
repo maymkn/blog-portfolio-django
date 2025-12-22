@@ -30,6 +30,7 @@
         {% load crispy_forms_tags %}
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
+            {{ form.media }}
             {{ form|crispy }}
             <button type="submit" class="btn">
                 {% if form.instance.pk %}Update{% else %}Publish{% endif %}
