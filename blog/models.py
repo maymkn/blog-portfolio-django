@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from django.urls import reverse
-#from ckeditor.fields import RichTextField
+from django_ckeditor_5.fields import CKEditor5Field
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
@@ -13,7 +13,7 @@ class Category(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
-    content = models.TextField()
+    content = CKEditor5Field(config_name='extends')  #inherits from models.TextField 
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     featured_image = models.ImageField(upload_to='blog/', default='blog/blog_default.jpg', blank=True)

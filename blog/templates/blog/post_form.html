@@ -5,6 +5,8 @@
     <title>{% if form.instance.pk %}Update Post {% else %}Create Post {% endif %}</title>
     <link rel="stylesheet" href="{% static 'blog/post_form.css' %}">
 
+    {{ form.media }} <!-- Required for styling/js to make ckeditor5 work -->
+
 {% endblock extra_headers %}
 
 {% block content %}
@@ -27,11 +29,10 @@
             </div>
         {% endif %}
 
-        {% load crispy_forms_tags %}
+        
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.media }}
-            {{ form|crispy }}
+            {{ form.as_p }}
             <button type="submit" class="btn">
                 {% if form.instance.pk %}Update{% else %}Publish{% endif %}
             </button>
